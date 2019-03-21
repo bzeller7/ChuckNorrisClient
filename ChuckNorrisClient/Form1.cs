@@ -42,9 +42,9 @@ namespace ChuckNorrisClient
             //Check if web service returns HTTP 200 - OK
             if (response.IsSuccessStatusCode)
             {
-                string data = 
-                    await response.Content.ReadAsStringAsync();
-                MessageBox.Show(data);
+                RandJokeResponse data = 
+                    await response.Content.ReadAsAsync<RandJokeResponse>();
+                MessageBox.Show(data.value.joke);
             }
             else
             {
