@@ -44,7 +44,15 @@ namespace ChuckNorrisClient
             {
                 RandJokeResponse data = 
                     await response.Content.ReadAsAsync<RandJokeResponse>();
-                MessageBox.Show(data.value.joke);
+
+                Value jokeData = data.value;
+
+                MessageBox.Show(jokeData.joke);
+                if(jokeData.categories.Count > 0)
+                {
+                    MessageBox.Show(string.Join("\n", jokeData.categories));
+                }
+                
             }
             else
             {
