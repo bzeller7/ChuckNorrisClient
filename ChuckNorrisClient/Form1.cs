@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -47,7 +48,12 @@ namespace ChuckNorrisClient
 
                 Value jokeData = data.value;
 
-                MessageBox.Show(jokeData.joke);
+                //Decode any special HTML Entities
+                //ex. &quot; should be "
+                string decodedJoke = WebUtility.HtmlDecode(jokeData.joke);
+
+                MessageBox.Show(decodedJoke);
+
                 if(jokeData.categories.Count > 0)
                 {
                     MessageBox.Show(string.Join("\n", jokeData.categories));
